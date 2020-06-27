@@ -21,6 +21,6 @@ public class FailHandler implements AuthenticationFailureHandler {
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
         response.setStatus(HttpStatus.FORBIDDEN.value());
         response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().write(e.getMessage());
+        response.getWriter().write(e.getMessage() + " please login first!");
     }
 }
