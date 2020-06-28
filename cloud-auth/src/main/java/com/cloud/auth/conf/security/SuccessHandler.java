@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * Copyright (C),Damon
@@ -22,8 +23,10 @@ public class SuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         response.setStatus(HttpStatus.OK.value());
-        response.setStatus(HttpStatus.FORBIDDEN.value());
         response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().write(" login successful ...");
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("code", HttpStatus.OK.value());
+        map.put("msg", "Login Success");
+        response.getWriter().write(map.toString());
     }
 }
