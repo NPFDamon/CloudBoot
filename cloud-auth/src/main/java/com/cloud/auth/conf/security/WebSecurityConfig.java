@@ -102,7 +102,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .sessionManagement()//session 管理
-                .invalidSessionUrl("/login")
+                .invalidSessionUrl("/auth/session-invalid")
                 .maximumSessions(1)//最大session并发量
                 .maxSessionsPreventsLogin(true)///Session达到最大有效数的时候，不再允许相同的账户登录
                 .expiredSessionStrategy(new SessionExpiredStrategy())/// Session在并发下失效后的处理策略;

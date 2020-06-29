@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -15,7 +16,7 @@ import java.util.Date;
  */
 @Data
 @TableName("cloud_user")
-public class UserEntity {
+public class UserEntity implements Serializable {
     @TableField("id")
     private Long id;
     @TableField("username")
