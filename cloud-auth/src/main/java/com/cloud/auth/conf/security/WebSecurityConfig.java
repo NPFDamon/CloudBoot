@@ -92,6 +92,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 })
                 .and()
                 .logout()
+                .invalidateHttpSession(true)//登出session失效
+                .deleteCookies("JSESSIONID")//删除cookie
                 .logoutSuccessHandler((request, response, e) -> {
                     response.setContentType("application/json;charset=utf-8");
                     response.setStatus(HttpStatus.OK.value());
@@ -99,10 +101,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 })
                 .permitAll()
                 .and()
-                .sessionManagement()
-                .maximumSessions(30)
-                .maxSessionsPreventsLogin(true)
-                .expiredSessionStrategy(new SessionExpiredStrategy());
+                .sessionManagement()//session 管理
+                .invalidSessionUrl("/login")
+                .maximumSessions(1)//最大session并发量
+                .maxSessionsPreventsLogin(true)///Session达到最大有效数的时候，不再允许相同的账户登录
+                .expiredSessionStrategy(new SessionExpiredStrategy())/// Session在并发下失效后的处理策略;
+        ;
         http.cors().disable();
         http.csrf().disable();
     }

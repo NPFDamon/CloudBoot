@@ -26,6 +26,9 @@ mybatis:
 
 server:
   port: 8001
+  servlet:
+    session:
+      timeout: 30
 
 eureka:
   client:
