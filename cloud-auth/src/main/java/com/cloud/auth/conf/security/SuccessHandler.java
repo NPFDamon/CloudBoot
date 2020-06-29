@@ -1,5 +1,8 @@
 package com.cloud.auth.conf.security;
 
+import com.cloud.common.result.Result;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -20,13 +23,13 @@ import java.util.HashMap;
  */
 @Component
 public class SuccessHandler implements AuthenticationSuccessHandler {
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         response.setStatus(HttpStatus.OK.value());
         response.setContentType("application/json;charset=UTF-8");
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("code", HttpStatus.OK.value());
-        map.put("msg", "Login Success");
-        response.getWriter().write(map.toString());
+        response.getWriter().write(objectMapper.writeValueAsString(Result.success()));
     }
 }

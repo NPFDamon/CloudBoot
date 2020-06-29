@@ -1,14 +1,13 @@
 package com.cloud.auth.rust;
 
 import com.cloud.auth.entity.UserEntity;
-import com.cloud.auth.mapper.UserMapper;
+import com.cloud.auth.req.LoginInfo;
 import com.cloud.auth.service.TestService;
+import com.cloud.common.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -25,9 +24,9 @@ public class LoginController {
     @Autowired
     private TestService testService;
 
-    @GetMapping(value = "/login")
-    public String login() {
-        return "test";
+    @PostMapping(value = "/login")
+    public Result login(@RequestBody LoginInfo loginInfo, HttpSession session) {
+        return Result.success();
     }
 
     @GetMapping(value = "/test")

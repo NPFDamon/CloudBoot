@@ -1,6 +1,8 @@
 package com.cloud.auth.conf.security.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -17,6 +19,8 @@ import java.util.Date;
  */
 @Data
 @Component
+@AllArgsConstructor
+@NoArgsConstructor
 public class User implements UserDetails {
     private String userName;
     private String password;

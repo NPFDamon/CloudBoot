@@ -11,6 +11,7 @@
     <modules>
         <module>cloud-eureka</module>
         <module>cloud-auth</module>
+        <module>cloud-common</module>
     </modules>
     <name>CloudBoot</name>
 
