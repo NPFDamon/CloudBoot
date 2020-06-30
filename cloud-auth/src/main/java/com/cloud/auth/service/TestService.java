@@ -1,6 +1,7 @@
 package com.cloud.auth.service;
 
 import com.cloud.auth.entity.UserEntity;
+import com.cloud.auth.req.UserInfo;
 
 import java.util.List;
 
@@ -14,4 +15,5 @@ import java.util.List;
 public interface TestService {
     List<UserEntity> getUser();
     UserEntity getUserByName(String username);
+    int register(UserInfo userInfo);
 }

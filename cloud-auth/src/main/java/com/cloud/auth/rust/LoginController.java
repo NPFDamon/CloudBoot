@@ -24,7 +24,7 @@ import java.util.List;
  * @Date: 2020-06-27:10:31
  */
 @RestController
-@RequestMapping(value = "/auth")
+@RequestMapping(value = "/login")
 public class LoginController {
 
     @Autowired

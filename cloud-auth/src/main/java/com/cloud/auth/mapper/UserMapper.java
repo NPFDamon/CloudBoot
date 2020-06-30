@@ -2,9 +2,7 @@ package com.cloud.auth.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cloud.auth.entity.UserEntity;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+import com.cloud.auth.req.UserInfo;
 
 import java.util.List;
 

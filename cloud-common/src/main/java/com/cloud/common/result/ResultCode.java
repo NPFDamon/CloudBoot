@@ -3,9 +3,10 @@ package com.cloud.common.result;
 public enum ResultCode {
     COMMON_SUCCESS(200, "success"),
     COMMON_SERVER_ERROR(500, "Server Failed!"),
-    COMMON_SERVER_NOT_FOUND(404,"Server not found"),
-    UNAUTHORIZED(401,"login fail"),
-    FORBIDDEN(403,"please login first");
+    COMMON_SERVER_NOT_FOUND(404, "Server not found"),
+    UNAUTHORIZED(401, "login fail"),
+    FORBIDDEN(403, "please login first"),
+    REGISTER_ERROR(201, "register fail");
 
     private int code;
     private String msg;

@@ -69,16 +69,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.csrf().disable();
 
         http.authenticationProvider(provider())
+                .authorizeRequests()
+                .antMatchers("/auth/**").permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
                 .httpBasic()
                 .authenticationEntryPoint((request, response, e) -> {
                     response.setContentType("application/json;charset=utf-8");
                     response.setStatus(HttpStatus.FORBIDDEN.value());
                     response.getWriter().write(objectMapper.writeValueAsString(Result.failure(ResultCode.FORBIDDEN, ResultCode.FORBIDDEN.getMsg())));
                 })
-                .and()
-                .authorizeRequests()
-                .anyRequest().authenticated()
-
                 .and()
                 .formLogin()
                 .failureHandler(new FailHandler())
@@ -102,10 +103,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .sessionManagement()//session 管理
-                .invalidSessionUrl("/auth/session-invalid")
                 .maximumSessions(1)//最大session并发量
                 .maxSessionsPreventsLogin(true)///Session达到最大有效数的时候，不再允许相同的账户登录
                 .expiredSessionStrategy(new SessionExpiredStrategy())/// Session在并发下失效后的处理策略;
+                .expiredUrl("/login/session-invalid")
         ;
         http.cors().disable();
         http.csrf().disable();
@@ -125,7 +126,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) {
         try {
-            authenticationManagerBuilder.inMemoryAuthentication()
+            authenticationManagerBuilder.inMemoryAuthentication().passwordEncoder(passwordEncoder())
                     .withUser("user").password("password").roles("USER");
         } catch (Exception e) {
             e.printStackTrace();
