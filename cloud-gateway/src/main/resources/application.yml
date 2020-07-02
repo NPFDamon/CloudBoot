@@ -1,0 +1,11 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: gateway-service
+          uri: www.baidu.com
+

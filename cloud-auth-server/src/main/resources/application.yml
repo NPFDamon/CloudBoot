@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: auth
+  redis:
+    host: localhost
+    port: 6379
+    database: 1
+    jedis:
+      pool:
+        max-idle: 100
+        max-active: 100
+        max-wait: 1000
+        min-idle: 10
+  datasource:
+    url: jdbc:mysql://39.96.95.188:3306/cloudboot?characterEncoding=utf8
+    username: root
+    password:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#mybatis-plus
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  typeAliasesPackage: com.cloud.auth.server.entity
+
+
+server:
+  port: 8001
+  servlet:
+    session:
+      timeout: 60
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server1:9001/eureka/,http://eureka-server2:9002/eureka/
+
